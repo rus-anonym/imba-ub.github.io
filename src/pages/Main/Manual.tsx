@@ -2,6 +2,7 @@ import session from "@/TS/session";
 import utils from "@rus-anonym/web-utils";
 import { Icon20HeadphonesSupportOutline } from "@vkontakte/icons";
 import {
+    Div,
     Group,
     Headline,
     Link,
@@ -31,41 +32,43 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                 Инструкция по установке
             </PanelHeader>
             <Group>
-                <Headline weight="2">
+                <Div>
+                    <Headline weight="2">
                     1. Сначала необходимо получить токен, для этого необходимо
                     перейти по{" "}
-                    <Link target="_blank" href="https://api.imbabot.ru/ut">
+                        <Link target="_blank" href="https://api.imbabot.ru/ut">
                         ссылке для получения токена
-                    </Link>
+                        </Link>
                     .
-                </Headline>
-                <Spacing />
-                <Headline weight="2">
+                    </Headline>
+                    <Spacing />
+                    <Headline weight="2">
                     2. После необходимо отправить токен в{" "}
-                    <Link
-                        target="_blank"
-                        href="https://vk.com/mine_company_bot"
-                    >
+                        <Link
+                            target="_blank"
+                            href="https://vk.com/mine_company_bot"
+                        >
                         группу приёмник токенов
-                    </Link>
+                        </Link>
                     .
-                </Headline>
-                <Spacing />
-                <Headline weight="2">
+                    </Headline>
+                    <Spacing />
+                    <Headline weight="2">
                     3. После отправки токена, должно произойти автоматическое
                     создание группы управления, через которое в дальнейшем и
                     будет происходить управление ботом и установить токен группы
-                </Headline>
-                <Spacing />
-                <Headline weight="2">
+                    </Headline>
+                    <Spacing />
+                    <Headline weight="2">
                     4. Теперь необходимо ввести команду «/ref {referral}»
-                    <br />
+                        <br />
                     Это необходимо для того, чтобы пользователь пригласивший Вас получил вознаграждение
-                </Headline>
-                <Spacing />
-                <Headline weight="2">
+                    </Headline>
+                    <Spacing />
+                    <Headline weight="2">
                     По всем возникшим вопросам можно связаться с технической поддержкой
-                </Headline>
+                    </Headline>
+                </Div>
                 <Spacing />
                 <SimpleCell
                     expandable
