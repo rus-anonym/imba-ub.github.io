@@ -1,7 +1,12 @@
 import session from "@/TS/session";
 import utils from "@rus-anonym/web-utils";
 import {
-    Icon20HeadphonesSupportOutline, Icon28ArticleOutline, Icon28CheckShieldOutline, Icon28GhostOutline, Icon28SpeedometerMaxOutline, Icon28WrenchOutline, Icon28ZeroRubleOutline
+    Icon20HeadphonesSupportOutline,
+    Icon28ArticleOutline,
+    Icon28CheckShieldOutline,
+    Icon28SpeedometerMaxOutline,
+    Icon28WrenchOutline,
+    Icon28ZeroRubleOutline
 } from "@vkontakte/icons";
 import {
     Div,
@@ -48,9 +53,6 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                 </SimpleCell>
                 <SimpleCell before={<Icon28SpeedometerMaxOutline />} disabled>
                     Быстрый
-                </SimpleCell>
-                <SimpleCell before={<Icon28GhostOutline />} disabled>
-                    Незаметный
                 </SimpleCell>
                 <SimpleCell before={<Icon28CheckShieldOutline />} disabled>
                     Безопасный
