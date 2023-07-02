@@ -25,6 +25,7 @@ export type TAdaptivityButton = {
 
 type TAdaptivityLayoutProps = SplitLayoutProps & {
     buttons: TAdaptivityButton[];
+    children: React.ReactElement | Iterable<React.ReactElement>;
 };
 
 const AdaptivityLayout: FC<TAdaptivityLayoutProps> = ({
@@ -73,7 +74,6 @@ const AdaptivityLayout: FC<TAdaptivityLayoutProps> = ({
                 >
                     {children}
                 </Epic>
-
                 {snackbar}
             </SplitCol>
         </SplitLayout>
