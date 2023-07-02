@@ -4,11 +4,16 @@ import {
     Icon20HeadphonesSupportOutline,
     Icon28ArticleOutline,
     Icon28CheckShieldOutline,
+    Icon28Newsfeed,
     Icon28SpeedometerMaxOutline,
+    Icon28Users3Outline,
     Icon28WrenchOutline,
     Icon28ZeroRubleOutline
 } from "@vkontakte/icons";
 import {
+    Alert,
+    Avatar,
+    Button,
     Div,
     Group,
     Header,
@@ -16,8 +21,10 @@ import {
     NavIdProps,
     Panel,
     PanelHeader,
+    PanelHeaderContent,
+    Placeholder,
     SimpleCell,
-    Spacing,
+    Spacing
 } from "@vkontakte/vkui";
 import { FC } from "react";
 
@@ -25,16 +32,20 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
     return (
         <Panel id={id}>
             <PanelHeader separator={false}>
-                <div
-                    style={{
-                        textAlign: "center",
-                        fontSize: "20px",
-                        fontWeight: "bold",
-                        color: "#52a374",
-                    }}
+                <PanelHeaderContent
+                    before={<img width={36} height={36} src="./assets/icon.png" />}
                 >
+                    <div
+                        style={{
+                            fontSize: "20px",
+                            fontWeight: "bold",
+                            color: "#52a374",
+                        }}
+                    >
                     Imba UserBot
-                </div>
+                    </div>
+                </PanelHeaderContent>
+                
             </PanelHeader>
             <Group>
                 <Div>
@@ -57,8 +68,27 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                 <SimpleCell before={<Icon28CheckShieldOutline />} disabled>
                     Безопасный
                 </SimpleCell>
+                <Placeholder
+                    icon={<Icon28WrenchOutline width={48} height={48}/>}
+                    withPadding={false}
+                    header="Инструкция по установке"
+                    action={
+                        <Button 
+                            size="l" 
+                            onClick={() => session.setPanel("/manual")}
+                        >
+                            Перейти к инструкции
+                        </Button>
+                    }/>
             </Group>
             <Group header={<Header mode="secondary">Полезное</Header>}>
+                <SimpleCell
+                    expandable
+                    before={<Icon28Newsfeed />}
+                    onClick={() => utils.web.redirect("https://api.imbabot.ru/sl/news")}
+                >
+                    Новостной канал
+                </SimpleCell>
                 <SimpleCell
                     expandable
                     before={
@@ -80,10 +110,44 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                 </SimpleCell>
                 <SimpleCell
                     expandable
-                    before={<Icon28WrenchOutline />}
-                    onClick={() => session.setPanel("/manual")}
+                    before={<Icon28Users3Outline />}
+                    onClick={() => {
+                        session.setPopout(
+                            <Alert 
+                                onClose={() => session.setPopout(null)} 
+                                header="Необходимо подтверждение личности"
+                                text="Для присутствия в чате пользователей, необходимо через бота привязать аккаунт к Telegram-боту"
+                                actions={[
+                                    {
+                                        mode: "default",
+                                        title: "Продолжить",
+                                        autoClose: true,
+                                        action: () => utils.web.redirect("https://api.imbabot.ru/sl/chat")
+                                    },
+                                    {
+                                        mode: "cancel",
+                                        title: "Перейти к Telegram-боту",
+                                        autoClose: true,
+                                        action: () => utils.web.redirect("https://api.imbabot.ru/sl/telegram-bot")
+                                    }
+                                ]}
+                            />
+                        );
+                    }}
                 >
-                    Инструкция по установке
+                    Беседа пользователей
+                </SimpleCell>
+                <SimpleCell
+                    expandable
+                    before={
+                        <Avatar
+                            src="./assets/Telegram.svg"
+                            size={32}
+                        />
+                    }
+                    onClick={() => utils.web.redirect("https://api.imbabot.ru/sl/telegram-bot")}
+                >
+                    Бот в Telegram
                 </SimpleCell>
             </Group>
         </Panel>
