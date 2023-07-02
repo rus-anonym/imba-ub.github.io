@@ -30,6 +30,9 @@ import {
 } from "@vkontakte/vkui";
 import { FC, useMemo } from "react";
 
+import ImbaIcon from "../../../assets/icon.png";
+import TelegramIcon from "../../../assets/Telegram.svg";
+
 const MainPage: FC<NavIdProps> = ({ id }) => {
     const { isDesktop } = useAdaptivityWithJSMediaQueries();
 
@@ -60,7 +63,7 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
         <Panel id={id}>
             <PanelHeader separator={false}>
                 <PanelHeaderContent
-                    before={<img width={36} height={36} src="./assets/icon.png" />}
+                    before={<img width={36} height={36} src={ImbaIcon} />}
                 >
                     <div
                         style={{
@@ -155,7 +158,7 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                     expandable
                     before={
                         <Avatar
-                            src="./assets/Telegram.svg"
+                            src={TelegramIcon}
                             size={32}
                         />
                     }
