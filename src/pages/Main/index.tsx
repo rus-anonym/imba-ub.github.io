@@ -12,6 +12,7 @@ import {
 } from "@vkontakte/icons";
 import {
     Alert,
+    AlertActionInterface,
     Avatar,
     Button,
     Div,
@@ -24,11 +25,37 @@ import {
     PanelHeaderContent,
     Placeholder,
     SimpleCell,
-    Spacing
+    Spacing,
+    useAdaptivityWithJSMediaQueries
 } from "@vkontakte/vkui";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 const MainPage: FC<NavIdProps> = ({ id }) => {
+    const { isDesktop } = useAdaptivityWithJSMediaQueries();
+
+    const chatActions = useMemo<AlertActionInterface[]>(() => {
+        const actions: AlertActionInterface[] = [
+            {
+                mode: "default",
+                title: "Продолжить",
+                autoClose: true,
+                action: () => utils.web.redirect("https://api.imbabot.ru/sl/chat")
+            },
+            {
+                mode: "cancel",
+                title: "Перейти к Telegram-боту",
+                autoClose: true,
+                action: () => utils.web.redirect("https://api.imbabot.ru/sl/telegram-bot")
+            }
+        ];
+
+        if (isDesktop) {
+            return actions;
+        } else {
+            return actions.reverse();
+        }
+    }, [isDesktop]);
+
     return (
         <Panel id={id}>
             <PanelHeader separator={false}>
@@ -117,20 +144,7 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                                 onClose={() => session.setPopout(null)} 
                                 header="Необходимо подтверждение личности"
                                 text="Для присутствия в чате пользователей, необходимо через бота привязать аккаунт к Telegram-боту"
-                                actions={[
-                                    {
-                                        mode: "default",
-                                        title: "Продолжить",
-                                        autoClose: true,
-                                        action: () => utils.web.redirect("https://api.imbabot.ru/sl/chat")
-                                    },
-                                    {
-                                        mode: "cancel",
-                                        title: "Перейти к Telegram-боту",
-                                        autoClose: true,
-                                        action: () => utils.web.redirect("https://api.imbabot.ru/sl/telegram-bot")
-                                    }
-                                ]}
+                                actions={chatActions}
                             />
                         );
                     }}
