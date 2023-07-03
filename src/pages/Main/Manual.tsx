@@ -3,10 +3,11 @@ import utils from "@rus-anonym/web-utils";
 import { Icon20HeadphonesSupportOutline } from "@vkontakte/icons";
 import {
     Div,
+    FormItem,
     Group,
     Headline,
     Link,
-    NavIdProps, Panel, PanelHeader, PanelHeaderBack, SimpleCell, Spacing
+    NavIdProps, Panel, PanelHeader, PanelHeaderBack, SegmentedControl, SimpleCell, Spacing
 } from "@vkontakte/vkui";
 import {
     FC, useEffect, useState
@@ -14,6 +15,7 @@ import {
 
 const MainManualPage: FC<NavIdProps> = ({ id }) => {
     const [referral, setReferral] = useState<null | string>(null);
+    const [installSource, setInstallSource] = useState<"telegram" | "vk">("telegram");
 
     useEffect(() => {
         if ("ref" in session.query.params) {
@@ -33,6 +35,24 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
             </PanelHeader>
             <Group>
                 <Div>
+                    <FormItem top="Метод установки">
+                        <SegmentedControl
+                            size="m"
+                            name="install-source"
+                            value={installSource}
+                            onChange={(value) => setInstallSource(value as "telegram" | "vk")}
+                            options={[
+                                {
+                                    label: "Telegram",
+                                    value: "telegram",
+                                },
+                                {
+                                    label: "ВКонтакте",
+                                    value: "vk",
+                                }
+                            ]}
+                        />
+                    </FormItem>
                     <Headline weight="2">
                     1. Сначала необходимо получить токен, для этого необходимо
                     перейти по{" "}
@@ -42,16 +62,30 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                     .
                     </Headline>
                     <Spacing />
-                    <Headline weight="2">
+                    {installSource === "vk" && (
+                        <Headline weight="2">
                     2. После необходимо отправить токен в{" "}
-                        <Link
-                            target="_blank"
-                            href="https://vk.com/mine_company_bot"
-                        >
+                            <Link
+                                target="_blank"
+                                href="https://vk.com/mine_company_bot"
+                            >
                         группу приёмник токенов
-                        </Link>
+                            </Link>
                     .
-                    </Headline>
+                        </Headline>
+                    )}
+                    {installSource === "telegram" && (
+                        <Headline weight="2">
+                    2. После необходимо отправить токен в {" "}
+                            <Link
+                                target="_blank"
+                                href="https://api.imbabot.ru/sl/telegram-bot"
+                            >
+                                бота
+                            </Link>, командой /add {"<token>"}
+                            
+                        </Headline>
+                    )}
                     <Spacing />
                     <Headline weight="2">
                     3. После отправки токена, должно произойти автоматическое
