@@ -1,6 +1,23 @@
 import { AppearanceType } from "@vkontakte/vk-bridge";
 import { makeAutoObservable } from "mobx";
 
+const HASH_STATIC_ROUTES: {
+    route: string;
+    view: string;
+    panel: string;
+}[] = [
+    {
+        route: "manual",
+        view: "/",
+        panel: "/manual"
+    },
+    {
+        route: "license",
+        view: "/",
+        panel: "/license"
+    }
+];
+
 class Cache {
     private readonly _values: Record<string, unknown> = {
     };
@@ -34,7 +51,9 @@ class QueryParams {
 
     constructor() {
         const url = new URL(window.location.href);
-        const params = new URLSearchParams(url.search);
+        const params = new URLSearchParams(url.href.substring(
+            url.href.indexOf("?")
+        ));
 
         this.params = Object.fromEntries(new URLSearchParams(params));
         const newUrl = url.origin + url.pathname;
@@ -48,7 +67,7 @@ class Session {
     private _appearance: AppearanceType | "auto" = "dark";
 
     public readonly cache = new Cache();
-    public readonly query = new QueryParams();
+    public readonly query: QueryParams;
     public snackbar: JSX.Element | null = null;
     public popout: JSX.Element | null = null;
 
@@ -58,6 +77,20 @@ class Session {
 
     constructor() {
         makeAutoObservable(this);
+        const hash = window.location.hash;
+        
+        const queryParamsStart = hash.indexOf("?");
+        const route = hash.substring(1, queryParamsStart === -1 ? undefined : queryParamsStart);
+
+        const page = HASH_STATIC_ROUTES.find(x => x.route === route);
+
+        this.query = new QueryParams();
+        if (!page) {
+            return;
+        }
+
+        this.activeView = page.view;
+        this.activePanel = page.panel;
     }
 
     public get appearance(): AppearanceType {
