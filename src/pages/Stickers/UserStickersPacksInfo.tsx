@@ -69,17 +69,16 @@ const UserStickersPacksInfo = ({
             <Group mode="plain" separator="hide">
                 <Placeholder
                     withPadding={false}
-                    header={`${value.totalPrice} ${utils.string.declOfNum(
+                    header={`${utils.number.toString(
                         value.totalPrice,
-                        ["голос", "голоса", "голосов"]
-                    )}`}
+                        ","
+                    )} ${utils.string.declOfNum(value.totalPrice, [
+                        "голос",
+                        "голоса",
+                        "голосов"
+                    ])}`}
                 >
-                    {utils.number.toString(value.totalPrice * 7, ",")}{" "}
-                    {utils.string.declOfNum(value.totalPrice * 7, [
-                        "рубль",
-                        "рубля",
-                        "рублей"
-                    ])}
+                    {utils.number.toString(value.totalPrice * 7, ",")}₽
                 </Placeholder>
             </Group>
             <Group mode="plain" separator="hide">
