@@ -5,6 +5,7 @@ const HASH_STATIC_ROUTES: {
     route: string;
     view: string;
     panel: string;
+    required?: string[];
 }[] = [
     {
         route: "manual",
@@ -15,15 +16,19 @@ const HASH_STATIC_ROUTES: {
         route: "license",
         view: "/",
         panel: "/license"
+    },
+    {
+        route: "stickers",
+        view: "/stickers",
+        panel: "/",
+        required: ["key"]
     }
 ];
 
 class Cache {
-    private readonly _values: Record<string, unknown> = {
-    };
+    private readonly _values: Record<string, unknown> = {};
 
-    public readonly trigger: object = {
-    };
+    public readonly trigger: object = {};
 
     constructor() {
         makeAutoObservable(this, undefined, {
@@ -33,8 +38,7 @@ class Cache {
 
     public set(id: string, value: unknown) {
         this._values[id] = value;
-        (this as {trigger: object})["trigger"] = {
-        };
+        (this as { trigger: object })["trigger"] = {};
     }
 
     public delete(id: string) {
@@ -51,15 +55,14 @@ class QueryParams {
 
     constructor() {
         const url = new URL(window.location.href);
-        const params = new URLSearchParams(url.href.substring(
-            url.href.indexOf("?")
-        ));
+        const params = new URLSearchParams(
+            url.href.substring(url.href.indexOf("?"))
+        );
 
         this.params = Object.fromEntries(new URLSearchParams(params));
         const newUrl = url.origin + url.pathname;
-        
-        window.history.pushState({
-        }, "", newUrl);
+
+        window.history.pushState({}, "", newUrl);
     }
 }
 
@@ -78,14 +81,21 @@ class Session {
     constructor() {
         makeAutoObservable(this);
         const hash = window.location.hash;
-        
-        const queryParamsStart = hash.indexOf("?");
-        const route = hash.substring(1, queryParamsStart === -1 ? undefined : queryParamsStart);
 
-        const page = HASH_STATIC_ROUTES.find(x => x.route === route);
+        const queryParamsStart = hash.indexOf("?");
+        const route = hash.substring(
+            1,
+            queryParamsStart === -1 ? undefined : queryParamsStart
+        );
+
+        const page = HASH_STATIC_ROUTES.find((x) => x.route === route);
 
         this.query = new QueryParams();
         if (!page) {
+            return;
+        }
+
+        if (page.required?.some((x) => x in this.query.params === false)) {
             return;
         }
 

@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@rus-anonym/web-utils": "^1.1.0",
+        "@sinclair/typebox": "^0.31.15",
         "@vkontakte/icons": "^2.46.0",
         "@vkontakte/vk-bridge": "^2.8.2",
         "@vkontakte/vkjs": "^1.1.0",
@@ -21,6 +22,7 @@
         "moment": "^2.29.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-infinite-scroll-component": "^6.1.0",
         "sass": "^1.63.6"
     },
     "devDependencies": {
