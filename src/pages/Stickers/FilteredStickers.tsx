@@ -57,6 +57,10 @@ const StickerCard = ({
         });
 
         axios.get(thumbSrcPath, { responseType: "arraybuffer" }).then((res) => {
+            if ("error" in res.data) {
+                return;
+            }
+
             const base64String = btoa(
                 String.fromCharCode(...new Uint8Array(res.data))
             );
