@@ -83,8 +83,10 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
             <PanelHeader
                 separator={false}
                 onClick={() => {
-                    session.setView("/");
-                    session.setPanel("/");
+                    if (filteredStickersPanel === null) {
+                        session.setView("/");
+                        session.setPanel("/");
+                    }
                 }}
             >
                 <PanelHeaderContent
