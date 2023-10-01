@@ -1,4 +1,5 @@
 import { AppearanceType } from "@vkontakte/vk-bridge";
+import { Alert, AlertProps } from "@vkontakte/vkui";
 import { makeAutoObservable } from "mobx";
 
 const HASH_STATIC_ROUTES: {
@@ -144,6 +145,21 @@ class Session {
 
     public setPanel(panel: string | null) {
         this.activePanel = panel || "/";
+    }
+
+    public setAlert(props: Partial<AlertProps>): void {
+        const clear = () => this.setPopout(null);
+        this.setPopout(
+            <Alert
+                {...props}
+                onClose={() => {
+                    clear();
+                    if (props.onClose) {
+                        props.onClose();
+                    }
+                }}
+            />
+        );
     }
 }
 

@@ -37,9 +37,12 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
                 });
 
                 if ("error" in userStickersPacksInfo.data) {
-                    // обработка для отсутсвующей страницы
                     session.setView("/");
                     session.setPanel("/");
+                    session.setAlert({
+                        header: "Ошибка",
+                        text: "Ссылка устарела, необходимо создать новую"
+                    });
                     return;
                 }
 
@@ -49,10 +52,18 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
             })().catch(() => {
                 session.setView("/");
                 session.setPanel("/");
+                session.setAlert({
+                    header: "Ошибка",
+                    text: "Неизвестная ошибка"
+                });
             });
         } else {
             session.setView("/");
             session.setPanel("/");
+            session.setAlert({
+                header: "Ошибка",
+                text: "Некорректная ссылка"
+            });
         }
     }, [session.query.params]);
 
@@ -69,7 +80,13 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
 
     return (
         <Panel id={id}>
-            <PanelHeader separator={false}>
+            <PanelHeader
+                separator={false}
+                onClick={() => {
+                    session.setView("/");
+                    session.setPanel("/");
+                }}
+            >
                 <PanelHeaderContent
                     before={
                         filteredStickersPanel === null ? (
