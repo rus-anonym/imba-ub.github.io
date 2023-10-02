@@ -1,3 +1,4 @@
+import Imba from "@/TS/Imba";
 import { Static, Type } from "@sinclair/typebox";
 
 const userStickersPacksInfoBox = Type.Object({
@@ -54,13 +55,17 @@ type TAssetsType = Static<typeof assetsTypes>;
 const getAssetsPath = ({
     accessKey,
     packId,
-    type
+    type,
+    isDevServer
 }: {
     accessKey: string;
     packId: number;
     type: TAssetsType;
+    isDevServer: boolean;
 }): string => {
-    const url = `https://dev-api.imbabot.ru/stickers/static/${packId}`;
+    const url = `${
+        isDevServer ? Imba.links.api.dev : Imba.links.api.prod
+    }/stickers/static/${packId}`;
     const params = new URLSearchParams({
         accessKey,
         ...type

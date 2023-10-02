@@ -1,3 +1,4 @@
+import Imba from "@/TS/Imba";
 import session from "@/TS/session";
 import LoadingPlaceholder from "@/components/adaptivity/LoadingPlaceholder";
 import {
@@ -8,7 +9,7 @@ import {
     PanelHeaderContent
 } from "@vkontakte/vkui";
 import axios from "axios";
-import { FC, Suspense, lazy, useEffect, useState } from "react";
+import { FC, Suspense, lazy, useEffect, useMemo, useState } from "react";
 import ImbaIcon from "../../../assets/icon.png";
 import { TUserStickersPacksInfo } from "./api";
 
@@ -25,6 +26,17 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
         accessKey: string;
     } | null>(null);
 
+    const isDevServer = useMemo(() => {
+        if (
+            "server" in session.query.params &&
+            session.query.params["server"] === "dev"
+        ) {
+            return true;
+        }
+
+        return false;
+    }, []);
+
     useEffect(() => {
         if ("key" in session.query.params) {
             void (async function fetch() {
@@ -32,9 +44,14 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
                     response: {
                         value: TUserStickersPacksInfo;
                     };
-                }>("https://dev-api.imbabot.ru/stickers.getPage", {
-                    key: (session.query.params as { key: string }).key
-                });
+                }>(
+                    `${
+                        isDevServer ? Imba.links.api.dev : Imba.links.api.prod
+                    }/stickers.getPage`,
+                    {
+                        key: (session.query.params as { key: string }).key
+                    }
+                );
 
                 if ("error" in userStickersPacksInfo.data) {
                     session.setView("/");
@@ -132,6 +149,7 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
                     <FilteredStickers
                         stickers={filteredStickersPanel.stickers}
                         accessKey={filteredStickersPanel.accessKey}
+                        isDevServer={isDevServer}
                     />
                 </Suspense>
             )}

@@ -30,8 +30,9 @@ import {
 } from "@vkontakte/vkui";
 import { FC, useMemo } from "react";
 
-import ImbaIcon from "../../../assets/icon.png";
+import Imba from "@/TS/Imba";
 import TelegramIcon from "../../../assets/Telegram.svg";
+import ImbaIcon from "../../../assets/icon.png";
 
 const MainPage: FC<NavIdProps> = ({ id }) => {
     const { isDesktop } = useAdaptivityWithJSMediaQueries();
@@ -42,13 +43,13 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                 mode: "default",
                 title: "Продолжить",
                 autoClose: true,
-                action: () => utils.web.redirect("https://api.imbabot.ru/sl/chat")
+                action: () => utils.web.redirect(Imba.links.chat)
             },
             {
                 mode: "cancel",
                 title: "Перейти к Telegram-боту",
                 autoClose: true,
-                action: () => utils.web.redirect("https://api.imbabot.ru/sl/telegram-bot")
+                action: () => utils.web.redirect(Imba.links.tgBot)
             }
         ];
 
@@ -69,13 +70,12 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                         style={{
                             fontSize: "20px",
                             fontWeight: "bold",
-                            color: "#52a374",
+                            color: "#52a374"
                         }}
                     >
-                    Imba UserBot
+                        Imba UserBot
                     </div>
                 </PanelHeaderContent>
-                
             </PanelHeader>
             <Group>
                 <Div>
@@ -99,23 +99,24 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                     Безопасный
                 </SimpleCell>
                 <Placeholder
-                    icon={<Icon28WrenchOutline width={48} height={48}/>}
+                    icon={<Icon28WrenchOutline width={48} height={48} />}
                     withPadding={false}
                     header="Инструкция по установке"
                     action={
-                        <Button 
-                            size="l" 
+                        <Button
+                            size="l"
                             onClick={() => session.setPanel("/manual")}
                         >
                             Перейти к инструкции
                         </Button>
-                    }/>
+                    }
+                />
             </Group>
             <Group header={<Header mode="secondary">Полезное</Header>}>
                 <SimpleCell
                     expandable
                     before={<Icon28Newsfeed />}
-                    onClick={() => utils.web.redirect("https://api.imbabot.ru/sl/news")}
+                    onClick={() => utils.web.redirect(Imba.links.news)}
                 >
                     Новостной канал
                 </SimpleCell>
@@ -127,7 +128,7 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                             height={28}
                         />
                     }
-                    onClick={() => utils.web.redirect("https://api.imbabot.ru/sl/support")}
+                    onClick={() => utils.web.redirect(Imba.links.support)}
                 >
                     Беседа технической поддержки
                 </SimpleCell>
@@ -143,8 +144,8 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                     before={<Icon28Users3Outline />}
                     onClick={() => {
                         session.setPopout(
-                            <Alert 
-                                onClose={() => session.setPopout(null)} 
+                            <Alert
+                                onClose={() => session.setPopout(null)}
                                 header="Необходимо подтверждение личности"
                                 text="Для присутствия в чате пользователей, необходимо через бота привязать аккаунт к Telegram-боту"
                                 actions={chatActions}
@@ -156,13 +157,8 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                 </SimpleCell>
                 <SimpleCell
                     expandable
-                    before={
-                        <Avatar
-                            src={TelegramIcon}
-                            size={32}
-                        />
-                    }
-                    onClick={() => utils.web.redirect("https://api.imbabot.ru/sl/telegram-bot")}
+                    before={<Avatar src={TelegramIcon} size={32} />}
+                    onClick={() => utils.web.redirect(Imba.links.tgBot)}
                 >
                     Бот в Telegram
                 </SimpleCell>

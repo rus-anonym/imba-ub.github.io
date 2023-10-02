@@ -22,10 +22,12 @@ import { TUserStickersPacksInfo, getAssetsPath } from "./api";
 
 const StickerCard = ({
     pack,
-    accessKey
+    accessKey,
+    isDevServer
 }: {
     pack: TUserStickersPacksInfo["stickers"][number];
     accessKey: string;
+    isDevServer: boolean;
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [thumbSrc, setThumbSrc] = useState<string | null>(null);
@@ -53,7 +55,8 @@ const StickerCard = ({
             type: {
                 type: "thumb",
                 size: findClosestNumber(pack.thumbs, 70).toString()
-            }
+            },
+            isDevServer
         });
 
         axios.get(thumbSrcPath, { responseType: "arraybuffer" }).then((res) => {
@@ -116,10 +119,12 @@ const StickerCard = ({
 
 const FilteredStickers = ({
     stickers,
-    accessKey
+    accessKey,
+    isDevServer
 }: {
     accessKey: string;
     stickers: TUserStickersPacksInfo["stickers"];
+    isDevServer: boolean;
 }) => {
     const [search, setSearch] = useState("");
 
@@ -190,6 +195,7 @@ const FilteredStickers = ({
                             pack={sticker}
                             key={`sticker-${index}`}
                             accessKey={accessKey}
+                            isDevServer={isDevServer}
                         />
                     );
                 })}

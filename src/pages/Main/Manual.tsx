@@ -1,3 +1,4 @@
+import Imba from "@/TS/Imba";
 import session from "@/TS/session";
 import utils from "@rus-anonym/web-utils";
 import { Icon20HeadphonesSupportOutline } from "@vkontakte/icons";
@@ -7,20 +8,26 @@ import {
     Group,
     Headline,
     Link,
-    NavIdProps, Panel, PanelHeader, PanelHeaderBack, SegmentedControl, SimpleCell, Spacing
+    NavIdProps,
+    Panel,
+    PanelHeader,
+    PanelHeaderBack,
+    SegmentedControl,
+    SimpleCell,
+    Spacing
 } from "@vkontakte/vkui";
-import {
-    FC, useEffect, useState
-} from "react";
+import { FC, useEffect, useState } from "react";
 
 const MainManualPage: FC<NavIdProps> = ({ id }) => {
     const [referral, setReferral] = useState<null | string>(null);
-    const [installSource, setInstallSource] = useState<"telegram" | "vk">("telegram");
+    const [installSource, setInstallSource] = useState<"telegram" | "vk">(
+        "telegram"
+    );
 
     useEffect(() => {
         if ("ref" in session.query.params) {
             setReferral(session.query.params.ref as string);
-        } 
+        }
     }, []);
 
     return (
@@ -40,71 +47,74 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                             size="m"
                             name="install-source"
                             value={installSource}
-                            onChange={(value) => setInstallSource(value as "telegram" | "vk")}
+                            onChange={(value) =>
+                                setInstallSource(value as "telegram" | "vk")
+                            }
                             options={[
                                 {
                                     label: "Telegram",
-                                    value: "telegram",
+                                    value: "telegram"
                                 },
                                 {
                                     label: "ВКонтакте",
-                                    value: "vk",
+                                    value: "vk"
                                 }
                             ]}
                         />
                     </FormItem>
                     <Headline weight="2">
-                    1. Сначала необходимо получить токен, для этого необходимо
-                    перейти по{" "}
-                        <Link target="_blank" href="https://api.imbabot.ru/ut">
-                        ссылке для получения токена
+                        1. Сначала необходимо получить токен, для этого
+                        необходимо перейти по{" "}
+                        <Link target="_blank" href={Imba.links.userToken}>
+                            ссылке для получения токена
                         </Link>
-                    .
+                        .
                     </Headline>
                     <Spacing />
                     {installSource === "vk" && (
                         <Headline weight="2">
-                    2. После необходимо отправить токен в{" "}
+                            2. После необходимо отправить токен в{" "}
                             <Link
                                 target="_blank"
                                 href="https://vk.com/mine_company_bot"
                             >
-                        группу приёмник токенов
+                                группу приёмник токенов
                             </Link>
-                    .
+                            .
                         </Headline>
                     )}
                     {installSource === "telegram" && (
                         <Headline weight="2">
-                    2. После необходимо отправить токен в {" "}
-                            <Link
-                                target="_blank"
-                                href="https://api.imbabot.ru/sl/telegram-bot"
-                            >
+                            2. После необходимо отправить токен в{" "}
+                            <Link target="_blank" href={Imba.links.tgBot}>
                                 бота
-                            </Link>, командой /add {"<token>"}
-                            
+                            </Link>
+                            , командой /add {"<token>"}
                         </Headline>
                     )}
                     <Spacing />
                     <Headline weight="2">
-                    3. После отправки токена, должно произойти автоматическое
-                    создание группы управления, через которое в дальнейшем и
-                    будет происходить управление ботом и установить токен группы
+                        3. После отправки токена, должно произойти
+                        автоматическое создание группы управления, через которое
+                        в дальнейшем и будет происходить управление ботом и
+                        установить токен группы
                     </Headline>
                     {referral !== null && (
                         <>
                             <Spacing />
                             <Headline weight="2">
-                    4. Теперь необходимо ввести команду «/ref {referral}»
+                                4. Теперь необходимо ввести команду «/ref{" "}
+                                {referral}»
                                 <br />
-                    Это необходимо для того, чтобы пользователь пригласивший Вас получил вознаграждение
+                                Это необходимо для того, чтобы пользователь
+                                пригласивший Вас получил вознаграждение
                             </Headline>
                         </>
                     )}
                     <Spacing />
                     <Headline weight="2">
-                        По всем возникшим вопросам можно связаться с технической поддержкой
+                        По всем возникшим вопросам можно связаться с технической
+                        поддержкой
                     </Headline>
                 </Div>
                 <Spacing />
@@ -116,7 +126,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                             height={28}
                         />
                     }
-                    onClick={() => utils.web.redirect("https://api.imbabot.ru/sl/support")}
+                    onClick={() => utils.web.redirect(Imba.links.support)}
                 >
                     Беседа технической поддержки
                 </SimpleCell>
