@@ -23,6 +23,12 @@ const HASH_STATIC_ROUTES: {
         view: "/stickers",
         panel: "/",
         required: ["key"]
+    },
+    {
+        route: "link",
+        view: "/link",
+        panel: "/",
+        required: ["id"]
     }
 ];
 
