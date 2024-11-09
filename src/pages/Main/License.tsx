@@ -1,5 +1,6 @@
 import session from "@/TS/session";
 import {
+    DisplayTitle,
     Div,
     Group,
     Headline,
@@ -81,7 +82,7 @@ const MainLicensePage: FC<NavIdProps> = ({ id }) => {
                     <PanelHeaderBack onClick={() => session.setPanel("/")} />
                 }
             >
-                Лицензионное соглашение
+                <DisplayTitle level="2">Лицензионное соглашение</DisplayTitle>
             </PanelHeader>
             <Group>
                 <Div>

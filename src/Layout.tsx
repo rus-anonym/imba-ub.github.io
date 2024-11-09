@@ -9,6 +9,7 @@ import session from "./TS/session";
 
 import { View } from "@vkontakte/vkui";
 
+import LinkPage from "./pages/Link";
 import MainPage from "./pages/Main";
 import MainLicensePage from "./pages/Main/License";
 import MainManualPage from "./pages/Main/Manual";
@@ -37,6 +38,9 @@ const Layout: FC = () => {
             </View>
             <View id="/stickers" activePanel={session.activePanel}>
                 <StickersPage id="/" />
+            </View>
+            <View id="/link" activePanel={session.activePanel}>
+                <LinkPage id="/" />
             </View>
         </AdaptivityLayout>
     );

@@ -3,6 +3,7 @@ import session from "@/TS/session";
 import utils from "@rus-anonym/web-utils";
 import { Icon20HeadphonesSupportOutline } from "@vkontakte/icons";
 import {
+    DisplayTitle,
     Div,
     FormItem,
     Group,
@@ -38,7 +39,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                     <PanelHeaderBack onClick={() => session.setPanel("/")} />
                 }
             >
-                Инструкция по установке
+                <DisplayTitle level="2">Инструкция по установке</DisplayTitle>
             </PanelHeader>
             <Group>
                 <Div>
