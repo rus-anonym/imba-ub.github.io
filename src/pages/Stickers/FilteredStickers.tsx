@@ -74,7 +74,9 @@ const StickerCard = ({
 
     return (
         <Accordion
+            //@ts-ignore
             open={isOpen}
+            //@ts-ignore
             onToggle={(event) => {
                 if (!("open" in event.target)) {
                     return;
@@ -173,7 +175,7 @@ const FilteredStickers = ({
                 next={loadNextChunk}
                 hasMore={displayedStickers.length !== filteredStickers.length}
                 loader={
-                    <Placeholder withPadding={false}>
+                    <Placeholder noPadding>
                         <Spinner size="large" />
                     </Placeholder>
                 }
@@ -203,7 +205,7 @@ const FilteredStickers = ({
                     <>
                         <Spacing size={40} />
                         <Placeholder
-                            withPadding={false}
+                            noPadding
                             action={
                                 <Button size="l" onClick={loadNextChunk}>
                                     Следующие

@@ -1,13 +1,13 @@
 class Imba {
     public links = {
-        chat: "https://api.imbabot.ru/sl/chat",
-        news: "https://api.imbabot.ru/sl/news",
-        support: "https://api.imbabot.ru/sl/support",
-        tgBot: "https://api.imbabot.ru/sl/telegram-bot",
-        userToken: "https://api.imbabot.ru/ut",
+        chat: "https://api.imba-bot.ru/sl/chat",
+        news: "https://api.imba-bot.ru/sl/news",
+        support: "https://api.imba-bot.ru/sl/support",
+        tgBot: "https://api.imba-bot.ru/sl/telegram-bot",
+        userToken: "https://api.imba-bot.ru/ut",
         api: {
-            prod: "https://api.imbabot.ru",
-            dev: "https://dev-api.imbabot.ru"
+            prod: "https://api.imba-bot.ru",
+            dev: "https://dev-api.imba-bot.ru"
         }
     } as const;
 }

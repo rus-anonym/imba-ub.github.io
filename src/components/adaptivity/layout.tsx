@@ -6,9 +6,7 @@ import {
     SplitLayoutProps,
     useAdaptivityWithJSMediaQueries
 } from "@vkontakte/vkui";
-import {
-    FC, useEffect, useState
-} from "react";
+import { FC, useEffect, useState } from "react";
 
 import AdaptivitySidebar from "./sidebar";
 import { AdaptivityTabbar } from "./tabbar";
@@ -49,10 +47,8 @@ const AdaptivityLayout: FC<TAdaptivityLayoutProps> = ({
 
     return (
         <SplitLayout
-            header={!isDesktop && <PanelHeader separator={false} />}
-            style={{
-                justifyContent: "center"
-            }}
+            center
+            header={!isDesktop && <PanelHeader delimiter="none" />}
             {...rest}
         >
             {isDesktop && buttons.length > 0 && (
@@ -69,7 +65,9 @@ const AdaptivityLayout: FC<TAdaptivityLayoutProps> = ({
                     activeStory={session.activeView}
                     tabbar={
                         !isDesktop &&
-                            buttons.length > 0 && <AdaptivityTabbar buttons={buttons} />
+                        buttons.length > 0 && (
+                            <AdaptivityTabbar buttons={buttons} />
+                        )
                     }
                 >
                     {children}

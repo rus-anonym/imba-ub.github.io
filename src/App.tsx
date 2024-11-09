@@ -5,7 +5,6 @@ import {
     Platform,
     ScreenSpinner,
     SplitLayout,
-    WebviewType,
     platform
 } from "@vkontakte/vkui";
 import { observer } from "mobx-react";
@@ -16,6 +15,7 @@ import Layout from "./Layout";
 
 const App = () => {
     const [isLoad, setIsLoad] = useState<boolean>(false);
+    //@ts-ignore
     const [platform, setPlatform] = useState<Platform>(currentPlatform());
 
     useEffect(() => {
@@ -27,18 +27,19 @@ const App = () => {
         return () => window.removeEventListener("resize", onResize, false);
     }, []);
 
-
     return (
-        <ConfigProvider 
+        <ConfigProvider
             appearance="dark"
             transitionMotionEnabled={false}
             platform={platform}
-            webviewType={WebviewType.INTERNAL}
+            hasCustomPanelHeaderAfter={false}
         >
             <AdaptivityProvider>
                 <AppRoot mode="full">
                     {isLoad ? (
-                        <SplitLayout popout={<ScreenSpinner state="loading" />} />
+                        <SplitLayout
+                            popout={<ScreenSpinner state="loading" />}
+                        />
                     ) : (
                         <Layout />
                     )}
@@ -48,11 +49,13 @@ const App = () => {
     );
 };
 
+//@ts-ignore
 function currentPlatform(): Platform {
     if (window.matchMedia("(orientation: landscape)").matches) {
         return Platform.VKCOM;
     }
 
+    //@ts-ignore
     return platform() as Platform;
 }
 

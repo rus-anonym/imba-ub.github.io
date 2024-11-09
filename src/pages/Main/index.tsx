@@ -42,13 +42,11 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
             {
                 mode: "default",
                 title: "Продолжить",
-                autoClose: true,
                 action: () => utils.web.redirect(Imba.links.chat)
             },
             {
                 mode: "cancel",
                 title: "Перейти к Telegram-боту",
-                autoClose: true,
                 action: () => utils.web.redirect(Imba.links.tgBot)
             }
         ];
@@ -62,7 +60,7 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
 
     return (
         <Panel id={id}>
-            <PanelHeader separator={false}>
+            <PanelHeader delimiter="none">
                 <PanelHeaderContent
                     before={<img width={36} height={36} src={ImbaIcon} />}
                 >
@@ -80,7 +78,7 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
             <Group>
                 <Div>
                     <Headline weight="2">
-                        Imba - это бот для Вашей страницы ВКонтакте.
+                        Imba UB - это бот для Вашей страницы ВКонтакте.
                     </Headline>
                     <Spacing />
                     <Headline weight="2">
@@ -89,18 +87,18 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                         многое другое.
                     </Headline>
                 </Div>
-                <SimpleCell before={<Icon28ZeroRubleOutline />} disabled>
+                <SimpleCell before={<Icon28ZeroRubleOutline />}>
                     Бесплатный
                 </SimpleCell>
-                <SimpleCell before={<Icon28SpeedometerMaxOutline />} disabled>
+                <SimpleCell before={<Icon28SpeedometerMaxOutline />}>
                     Быстрый
                 </SimpleCell>
-                <SimpleCell before={<Icon28CheckShieldOutline />} disabled>
+                <SimpleCell before={<Icon28CheckShieldOutline />}>
                     Безопасный
                 </SimpleCell>
                 <Placeholder
                     icon={<Icon28WrenchOutline width={48} height={48} />}
-                    withPadding={false}
+                    noPadding
                     header="Инструкция по установке"
                     action={
                         <Button
@@ -114,14 +112,14 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
             </Group>
             <Group header={<Header mode="secondary">Полезное</Header>}>
                 <SimpleCell
-                    expandable
+                    expandable="always"
                     before={<Icon28Newsfeed />}
                     onClick={() => utils.web.redirect(Imba.links.news)}
                 >
                     Новостной канал
                 </SimpleCell>
                 <SimpleCell
-                    expandable
+                    expandable="always"
                     before={
                         <Icon20HeadphonesSupportOutline
                             width={28}
@@ -133,14 +131,14 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                     Беседа технической поддержки
                 </SimpleCell>
                 <SimpleCell
-                    expandable
+                    expandable="always"
                     before={<Icon28ArticleOutline />}
                     onClick={() => session.setPanel("/license")}
                 >
                     Лицензионное соглашение
                 </SimpleCell>
                 <SimpleCell
-                    expandable
+                    expandable="always"
                     before={<Icon28Users3Outline />}
                     onClick={() => {
                         session.setPopout(
@@ -156,7 +154,7 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                     Беседа пользователей
                 </SimpleCell>
                 <SimpleCell
-                    expandable
+                    expandable="always"
                     before={<Avatar src={TelegramIcon} size={32} />}
                     onClick={() => utils.web.redirect(Imba.links.tgBot)}
                 >

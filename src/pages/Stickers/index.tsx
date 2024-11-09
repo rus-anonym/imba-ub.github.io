@@ -98,7 +98,7 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
     return (
         <Panel id={id}>
             <PanelHeader
-                separator={false}
+                delimiter="none"
                 onClick={() => {
                     if (filteredStickersPanel === null) {
                         session.setView("/");

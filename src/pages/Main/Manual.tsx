@@ -33,7 +33,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
     return (
         <Panel id={id}>
             <PanelHeader
-                separator={false}
+                delimiter="none"
                 before={
                     <PanelHeaderBack onClick={() => session.setPanel("/")} />
                 }
@@ -119,7 +119,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                 </Div>
                 <Spacing />
                 <SimpleCell
-                    expandable
+                    expandable="always"
                     before={
                         <Icon20HeadphonesSupportOutline
                             width={28}

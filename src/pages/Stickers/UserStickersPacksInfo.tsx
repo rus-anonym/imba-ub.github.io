@@ -68,7 +68,7 @@ const UserStickersPacksInfo = ({
             </Group>
             <Group mode="plain" separator="hide">
                 <Placeholder
-                    withPadding={false}
+                    noPadding
                     header={`${utils.number.toString(
                         value.totalPrice,
                         ","

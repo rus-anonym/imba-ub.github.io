@@ -1,7 +1,4 @@
-import {
-    Cell, Group, List, PanelHeader,
-    SplitCol
-} from "@vkontakte/vkui";
+import { Cell, Group, List, PanelHeader, SplitCol } from "@vkontakte/vkui";
 import { observer } from "mobx-react";
 import { FC } from "react";
 
@@ -15,9 +12,7 @@ type TAdaptivitySidebarProps = {
 const AdaptivitySidebar: FC<TAdaptivitySidebarProps> = ({ buttons }) => {
     return (
         <SplitCol fixed width="280px" maxWidth="280px">
-            <PanelHeader separator>
-                { /* // Logo?? */ }
-            </PanelHeader>
+            <PanelHeader delimiter="separator">{/* // Logo?? */}</PanelHeader>
             <Group>
                 <List>
                     {buttons.map(({ story, icon, text }: TAdaptivityButton) => (
@@ -27,14 +22,16 @@ const AdaptivitySidebar: FC<TAdaptivitySidebarProps> = ({ buttons }) => {
                             style={
                                 session.activeView === story
                                     ? {
-                                        backgroundColor:
-                        "var(--vkui--color_background_secondary)",
-                                        borderRadius: 8
-                                    }
-                                    : {
-                                    }
+                                          backgroundColor:
+                                              "var(--vkui--color_background_secondary)",
+                                          borderRadius: 8
+                                      }
+                                    : {}
                             }
-                            onClick={() => session.activeView !== story && session.setView(story)}
+                            onClick={() =>
+                                session.activeView !== story &&
+                                session.setView(story)
+                            }
                         >
                             {text}
                         </Cell>

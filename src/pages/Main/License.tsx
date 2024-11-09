@@ -76,7 +76,7 @@ const MainLicensePage: FC<NavIdProps> = ({ id }) => {
     return (
         <Panel id={id}>
             <PanelHeader
-                separator={false}
+                delimiter="none"
                 before={
                     <PanelHeaderBack onClick={() => session.setPanel("/")} />
                 }
@@ -94,7 +94,9 @@ const MainLicensePage: FC<NavIdProps> = ({ id }) => {
                     </Headline>
                     <Spacing />
                     <Headline weight="2">
-                        Регистрируясь, Вы соглашаетесь с описанными ниже условиями и обязуетесь выполнять их вплоть до удаления своего профиля из базы данных бота.
+                        Регистрируясь, Вы соглашаетесь с описанными ниже
+                        условиями и обязуетесь выполнять их вплоть до удаления
+                        своего профиля из базы данных бота.
                     </Headline>
                     <Placeholder>* * *</Placeholder>
                     <Headline weight="1">
