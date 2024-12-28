@@ -19,18 +19,7 @@ const Layout: FC = () => {
     const buttons = useMemo<TAdaptivityButton[]>(() => [], []);
 
     return (
-        <AdaptivityLayout
-            // modal={
-            //     <ModalRoot
-            //         activeModal={session.activeModal}
-            //         onClose={() => session.setModal(null)}
-            //     >
-            //         <></>
-            //     </ModalRoot>
-            // }
-            popout={session.popout}
-            buttons={buttons}
-        >
+        <AdaptivityLayout buttons={buttons}>
             <View id="/" activePanel={session.activePanel}>
                 <MainPage id="/" />
                 <MainLicensePage id="/license" />

@@ -32,7 +32,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
     }, []);
 
     return (
-        <Panel id={id}>
+        (<Panel id={id}>
             <PanelHeader
                 delimiter="none"
                 before={
@@ -48,6 +48,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                             size="m"
                             name="install-source"
                             value={installSource}
+                            
                             onChange={(value) =>
                                 setInstallSource(value as "telegram" | "vk")
                             }
@@ -63,7 +64,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                             ]}
                         />
                     </FormItem>
-                    <Headline weight="2">
+                    <Headline weight="2" useAccentWeight>
                         1. Сначала необходимо получить токен, для этого
                         необходимо перейти по{" "}
                         <Link target="_blank" href={Imba.links.userToken}>
@@ -73,7 +74,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                     </Headline>
                     <Spacing />
                     {installSource === "vk" && (
-                        <Headline weight="2">
+                        <Headline weight="2" useAccentWeight>
                             2. После необходимо отправить токен в{" "}
                             <Link
                                 target="_blank"
@@ -85,7 +86,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                         </Headline>
                     )}
                     {installSource === "telegram" && (
-                        <Headline weight="2">
+                        <Headline weight="2" useAccentWeight>
                             2. После необходимо отправить токен в{" "}
                             <Link target="_blank" href={Imba.links.tgBot}>
                                 бота
@@ -94,7 +95,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                         </Headline>
                     )}
                     <Spacing />
-                    <Headline weight="2">
+                    <Headline weight="2" useAccentWeight>
                         3. После отправки токена, должно произойти
                         автоматическое создание группы управления, через которое
                         в дальнейшем и будет происходить управление ботом и
@@ -103,7 +104,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                     {referral !== null && (
                         <>
                             <Spacing />
-                            <Headline weight="2">
+                            <Headline weight="2" useAccentWeight>
                                 4. Теперь необходимо ввести команду «/ref{" "}
                                 {referral}»
                                 <br />
@@ -113,14 +114,14 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                         </>
                     )}
                     <Spacing />
-                    <Headline weight="2">
+                    <Headline weight="2" useAccentWeight>
                         По всем возникшим вопросам можно связаться с технической
                         поддержкой
                     </Headline>
                 </Div>
                 <Spacing />
                 <SimpleCell
-                    expandable="always"
+                    chevron="always"
                     before={
                         <Icon20HeadphonesSupportOutline
                             width={28}
@@ -132,7 +133,7 @@ const MainManualPage: FC<NavIdProps> = ({ id }) => {
                     Беседа технической поддержки
                 </SimpleCell>
             </Group>
-        </Panel>
+        </Panel>)
     );
 };
 

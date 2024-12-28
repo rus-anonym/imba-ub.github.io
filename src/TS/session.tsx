@@ -1,6 +1,7 @@
 import { AppearanceType } from "@vkontakte/vk-bridge";
 import { Alert, AlertProps } from "@vkontakte/vkui";
 import { makeAutoObservable } from "mobx";
+import { JSX } from "react";
 
 const HASH_STATIC_ROUTES: {
     route: string;

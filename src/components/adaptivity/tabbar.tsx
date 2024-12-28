@@ -10,17 +10,17 @@ type TAdaptivityTabbarProps = {
 
 export const AdaptivityTabbar: FC<TAdaptivityTabbarProps> = ({ buttons }) => {
     return (
-        <Tabbar>
+        (<Tabbar>
             {buttons.map(({ story, icon, text }: TAdaptivityButton) => (
                 <TabbarItem
                     key={story}
                     selected={story === session.activeView}
-                    text={text}
+                    label={text}
                     onClick={() => session.activeView !== story && session.setView(story)}
                 >
                     {icon}
                 </TabbarItem>
             ))}
-        </Tabbar>
+        </Tabbar>)
     );
 };

@@ -77,11 +77,11 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
             </PanelHeader>
             <Group>
                 <Div>
-                    <Headline weight="2">
+                    <Headline weight="2" useAccentWeight>
                         Imba UB - это бот для Вашей страницы ВКонтакте.
                     </Headline>
                     <Spacing />
-                    <Headline weight="2">
+                    <Headline weight="2" useAccentWeight>
                         С помощью него можно сохранять голосовые сообщения,
                         создавать цитаты, не выходя из диалога с другом, и
                         многое другое.
@@ -99,7 +99,7 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                 <Placeholder
                     icon={<Icon28WrenchOutline width={48} height={48} />}
                     noPadding
-                    header="Инструкция по установке"
+                    title="Инструкция по установке"
                     action={
                         <Button
                             size="l"
@@ -110,16 +110,16 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                     }
                 />
             </Group>
-            <Group header={<Header mode="secondary">Полезное</Header>}>
+            <Group header={<Header>Полезное</Header>}>
                 <SimpleCell
-                    expandable="always"
+                    chevron="always"
                     before={<Icon28Newsfeed />}
                     onClick={() => utils.web.redirect(Imba.links.news)}
                 >
                     Новостной канал
                 </SimpleCell>
                 <SimpleCell
-                    expandable="always"
+                    chevron="always"
                     before={
                         <Icon20HeadphonesSupportOutline
                             width={28}
@@ -131,21 +131,21 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                     Беседа технической поддержки
                 </SimpleCell>
                 <SimpleCell
-                    expandable="always"
+                    chevron="always"
                     before={<Icon28ArticleOutline />}
                     onClick={() => session.setPanel("/license")}
                 >
                     Лицензионное соглашение
                 </SimpleCell>
                 <SimpleCell
-                    expandable="always"
+                    chevron="always"
                     before={<Icon28Users3Outline />}
                     onClick={() => {
                         session.setPopout(
                             <Alert
                                 onClose={() => session.setPopout(null)}
-                                header="Необходимо подтверждение личности"
-                                text="Для присутствия в чате пользователей, необходимо через бота привязать аккаунт к Telegram-боту"
+                                title="Необходимо подтверждение личности"
+                                description="Для присутствия в чате пользователей, необходимо через бота привязать аккаунт к Telegram-боту"
                                 actions={chatActions}
                             />
                         );
@@ -154,7 +154,7 @@ const MainPage: FC<NavIdProps> = ({ id }) => {
                     Беседа пользователей
                 </SimpleCell>
                 <SimpleCell
-                    expandable="always"
+                    chevron="always"
                     before={<Avatar src={TelegramIcon} size={32} />}
                     onClick={() => utils.web.redirect(Imba.links.tgBot)}
                 >

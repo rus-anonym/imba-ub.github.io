@@ -6,7 +6,7 @@ import {
     SplitLayoutProps,
     useAdaptivityWithJSMediaQueries
 } from "@vkontakte/vkui";
-import { FC, useEffect, useState } from "react";
+import { FC, JSX, useEffect, useState } from "react";
 
 import AdaptivitySidebar from "./sidebar";
 import { AdaptivityTabbar } from "./tabbar";

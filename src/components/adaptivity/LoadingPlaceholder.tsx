@@ -10,18 +10,18 @@ const LoadingPlaceholder = () => {
 
     if (isDesktop) {
         return (
-            <Group>
+            (<Group>
                 <Placeholder>
-                    <Spinner size="large" />
+                    <Spinner size="xl" />
                 </Placeholder>
-            </Group>
+            </Group>)
         );
     }
 
     return (
-        <Placeholder stretched>
-            <Spinner size="large" />
-        </Placeholder>
+        (<Placeholder stretched>
+            <Spinner size="xl" />
+        </Placeholder>)
     );
 };
 

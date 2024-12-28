@@ -52,7 +52,7 @@ const LinkPage: FC<NavIdProps> = ({ id }) => {
     }, [remainRedirectTime]);
 
     return (
-        <Panel id={id}>
+        (<Panel id={id}>
             <PanelHeader delimiter="none">
                 <PanelHeaderContent
                     before={<img width={36} height={36} src={ImbaIcon} />}
@@ -70,7 +70,7 @@ const LinkPage: FC<NavIdProps> = ({ id }) => {
             </PanelHeader>
             <Group>
                 <Placeholder
-                    header={`Ссылка #${
+                    title={`Ссылка #${
                         (session.query.params as { id?: string })["id"]
                     } не обнаружена`}
                     icon={<Icon56CancelCircleOutline width={96} height={96} />}
@@ -83,7 +83,7 @@ const LinkPage: FC<NavIdProps> = ({ id }) => {
                     Перенаправление на главную страницу {displayTime}
                 </Placeholder>
             </Group>
-        </Panel>
+        </Panel>)
     );
 };
 

@@ -57,8 +57,8 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
                     session.setView("/");
                     session.setPanel("/");
                     session.setAlert({
-                        header: "Ошибка",
-                        text: "Ссылка устарела, необходимо создать новую"
+                        title: "Ошибка",
+                        content: "Ссылка устарела, необходимо создать новую"
                     });
                     return;
                 }
@@ -70,16 +70,16 @@ const StickersPage: FC<NavIdProps> = ({ id }) => {
                 session.setView("/");
                 session.setPanel("/");
                 session.setAlert({
-                    header: "Ошибка",
-                    text: "Неизвестная ошибка"
+                    title: "Ошибка",
+                    content: "Неизвестная ошибка"
                 });
             });
         } else {
             session.setView("/");
             session.setPanel("/");
             session.setAlert({
-                header: "Ошибка",
-                text: "Некорректная ссылка"
+                title: "Ошибка",
+                content: "Некорректная ссылка"
             });
         }
     }, [session.query.params]);

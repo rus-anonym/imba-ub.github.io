@@ -3,8 +3,6 @@ import {
     AppRoot,
     ConfigProvider,
     Platform,
-    ScreenSpinner,
-    SplitLayout,
     platform
 } from "@vkontakte/vkui";
 import { observer } from "mobx-react";
@@ -12,11 +10,12 @@ import { useEffect, useState } from "react";
 
 import "moment/dist/locale/ru";
 import Layout from "./Layout";
+import session from "./TS/session";
 
 const App = () => {
-    const [isLoad, setIsLoad] = useState<boolean>(false);
-    //@ts-ignore
-    const [platform, setPlatform] = useState<Platform>(currentPlatform());
+    const [platform, setPlatform] = useState<
+        (typeof Platform)[keyof typeof Platform]
+    >(currentPlatform());
 
     useEffect(() => {
         function onResize(): void {
@@ -29,20 +28,15 @@ const App = () => {
 
     return (
         <ConfigProvider
-            appearance="dark"
+            colorScheme="dark"
             transitionMotionEnabled={false}
             platform={platform}
             hasCustomPanelHeaderAfter={false}
         >
             <AdaptivityProvider>
                 <AppRoot mode="full">
-                    {isLoad ? (
-                        <SplitLayout
-                            popout={<ScreenSpinner state="loading" />}
-                        />
-                    ) : (
-                        <Layout />
-                    )}
+                    <Layout />
+                    {session.popout}
                 </AppRoot>
             </AdaptivityProvider>
         </ConfigProvider>

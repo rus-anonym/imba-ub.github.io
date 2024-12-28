@@ -45,7 +45,7 @@ const UserStickersPacksInfo = ({
     }, [value.stickers]);
 
     return (
-        <Group>
+        (<Group>
             <Group mode="plain">
                 <div
                     style={{
@@ -61,7 +61,7 @@ const UserStickersPacksInfo = ({
                         style={{ marginBottom: 8, marginTop: 20, fontSize: 24 }}
                         level="3"
                         weight="2"
-                    >
+                        useAccentWeight>
                         Стикеры {value.user.fullName}
                     </Title>
                 </div>
@@ -69,7 +69,7 @@ const UserStickersPacksInfo = ({
             <Group mode="plain" separator="hide">
                 <Placeholder
                     noPadding
-                    header={`${utils.number.toString(
+                    title={`${utils.number.toString(
                         value.totalPrice,
                         ","
                     )} ${utils.string.declOfNum(value.totalPrice, [
@@ -92,7 +92,7 @@ const UserStickersPacksInfo = ({
                         }}
                         before={<Icon28StickerOutline />}
                         indicator={
-                            <Counter mode="contrast">
+                            <Counter mode="contrast" appearance="accent">
                                 {stickers.list.length -
                                     stickers.counts.animated}
                             </Counter>
@@ -109,7 +109,7 @@ const UserStickersPacksInfo = ({
                         }}
                         before={<Icon28StickerSmileOutline />}
                         indicator={
-                            <Counter mode="contrast">
+                            <Counter mode="contrast" appearance="accent">
                                 {stickers.counts.animated}
                             </Counter>
                         }
@@ -125,7 +125,7 @@ const UserStickersPacksInfo = ({
                         }}
                         before={<Icon28ZeroRubleOutline />}
                         indicator={
-                            <Counter mode="contrast">
+                            <Counter mode="contrast" appearance="accent">
                                 {stickers.counts.free}
                             </Counter>
                         }
@@ -141,7 +141,7 @@ const UserStickersPacksInfo = ({
                         }}
                         before={<Icon28WalletOutline />}
                         indicator={
-                            <Counter mode="contrast">
+                            <Counter mode="contrast" appearance="accent">
                                 {stickers.list.length - stickers.counts.free}
                             </Counter>
                         }
@@ -157,7 +157,7 @@ const UserStickersPacksInfo = ({
                         }}
                         before={<Icon28LockOutline />}
                         indicator={
-                            <Counter mode="contrast">
+                            <Counter mode="contrast" appearance="accent">
                                 {stickers.counts.exclusive}
                             </Counter>
                         }
@@ -170,7 +170,7 @@ const UserStickersPacksInfo = ({
                         }}
                         before={<Icon28More />}
                         indicator={
-                            <Counter mode="contrast">
+                            <Counter mode="contrast" appearance="accent">
                                 {stickers.list.length}
                             </Counter>
                         }
@@ -179,7 +179,7 @@ const UserStickersPacksInfo = ({
                     </Cell>
                 </List>
             </Group>
-        </Group>
+        </Group>)
     );
 };
 

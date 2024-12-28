@@ -100,7 +100,7 @@ const StickerCard = ({
                 }
                 multiline
                 disabled
-                caption={`Автор: ${pack.author}`}
+                subtitle={`Автор: ${pack.author}`}
                 actions={
                     <ButtonGroup mode="horizontal" gap="s" stretched>
                         <Button
@@ -176,7 +176,7 @@ const FilteredStickers = ({
                 hasMore={displayedStickers.length !== filteredStickers.length}
                 loader={
                     <Placeholder noPadding>
-                        <Spinner size="large" />
+                        <Spinner size="xl" />
                     </Placeholder>
                 }
                 scrollThreshold={0.5}
