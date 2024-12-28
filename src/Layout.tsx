@@ -19,7 +19,7 @@ const Layout: FC = () => {
     const buttons = useMemo<TAdaptivityButton[]>(() => [], []);
 
     return (
-        <AdaptivityLayout buttons={buttons}>
+        <AdaptivityLayout buttons={buttons} style={{ paddingTop: "1.25rem" }}>
             <View id="/" activePanel={session.activePanel}>
                 <MainPage id="/" />
                 <MainLicensePage id="/license" />
